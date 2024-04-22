@@ -1,0 +1,28 @@
+@import 'utilities/variables';
+
+
+.container-matmatikk {
+  flex: 1;
+
+  .container-top {
+    background-color: $primary-green;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+  }
+
+  .container-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 2rem;
+
+  }
+}
+
+.heading-matmatikk {
+  font-weight: 700;
+  font-family: 'Merriweather', serif;
+}
+
