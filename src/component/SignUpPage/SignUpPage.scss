@@ -1,0 +1,11 @@
+.signup-form {
+  display: flex;
+  flex-direction: column;
+
+  .form-group {
+    label {
+      font-size: large;
+      margin-bottom: .25rem;
+    }
+  }
+}

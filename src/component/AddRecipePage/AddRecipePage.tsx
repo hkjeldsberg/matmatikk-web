@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useForm} from "react-hook-form";
 import {Recipe} from "../../model/Recipe";
 import {createRecipe} from "../../service/RecipeService";
-import './add-recipe-page.scss'
+import './AddRecipePage.scss'
 
 export interface RecipeFormState {
     name: string,
@@ -40,7 +40,6 @@ export const AddRecipePage: React.FC = () => {
                     Oppskriften til {recipe.name} ble lagt til
                 </div>
             )}
-
             {error && <div className="error-message">{error}</div>}
             <form className="recipe-form" onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group">

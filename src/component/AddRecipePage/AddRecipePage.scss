@@ -3,6 +3,11 @@
 .recipe-form {
   display: flex;
   flex-direction: column;
+  .form-group{
+    label{
+      font-size: large;
+    }
+  }
 }
 
 .heading-nb{
@@ -23,7 +28,6 @@
     font-size: large;
     font-family: "Roboto", serif;
     padding: 1rem 1rem;
-    margin-bottom: 1rem;
     border-radius: 4px;
     border: 1px solid $primary-grey;
 
