@@ -17,7 +17,6 @@
     justify-content: center;
     flex-direction: column;
     padding: 2rem;
-
   }
 }
 
@@ -26,3 +25,20 @@
   font-family: 'Merriweather', serif;
 }
 
+.btn-matmatikk {
+  font-size: large;
+  font-family: "Roboto", serif;
+  padding: 1rem 1rem;
+  border-radius: 4px;
+  border: 1px solid $primary-white;
+  cursor: pointer;
+  background-color: $primary-green;
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &:hover {
+    border: 1px solid $primary-black;
+  }
+}

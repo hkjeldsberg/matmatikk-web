@@ -7,6 +7,7 @@ import {
 import {Header} from "./component/Header/Header";
 import {Footer} from "./component/Footer/Footer";
 import {HomePage} from "./component/HomePage/HomePage";
+import {AddRecipePage} from "./component/AddRecipePage/AddRecipePage";
 import './App.scss'
 
 const App: React.FC = () =>
@@ -14,6 +15,7 @@ const App: React.FC = () =>
         <Header/>
         <Routes>
             <Route path="/" element={<HomePage/>}/>
+            <Route path="/add" element={<AddRecipePage/>}/>
         </Routes>
         <Footer/>
     </Router>

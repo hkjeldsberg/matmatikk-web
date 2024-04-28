@@ -24,22 +24,4 @@ code {
   monospace;
 }
 
-button {
-  padding: .5rem 1rem;
-  font-weight: bold;
-  color: $primary-black;
-  border: none;
-  border-radius: .2rem !important;
-  cursor: pointer;
-  background-color: $primary-green;
-
-  &:active {
-    transform: scale(0.95);
-  }
-
-  &:hover {
-    background-color: $secondary-yellow;
-  }
-
-}
 

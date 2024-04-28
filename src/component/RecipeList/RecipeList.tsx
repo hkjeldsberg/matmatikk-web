@@ -33,7 +33,6 @@ export const RecipeList: React.FC = () => {
                     </div>
                 </div>
             ) : 'Ingen oppskrifter tilgjengelig.'}
-
         </div>
     </div>)
 }

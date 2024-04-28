@@ -7,6 +7,7 @@ export const Header: React.FC = () => {
         <header>
             <Link to="/" className="header-title">MatMatikk</Link>
             <nav>
+                <Link to="/add">Legg til oppskrift</Link>
                 <Link to="/search">Søk</Link>
                 <Link to="/login">Logg inn</Link>
             </nav>
