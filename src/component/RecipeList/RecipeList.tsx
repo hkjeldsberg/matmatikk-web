@@ -2,21 +2,23 @@ import React, {useEffect, useState} from 'react';
 import {Recipe} from "../../model/Recipe";
 import {fetchRecipes} from "../../service/RecipeService";
 import './RecipeList.scss'
+import {useAuth} from "../AuthProvider/AuthProvider";
 
 export const RecipeList: React.FC = () => {
+    const {token} = useAuth()
     const [recipes, setRecipes] = useState<Recipe[]>()
 
     useEffect(() => {
         const loadRecipes = async () => {
             try {
-                const recipieData = await fetchRecipes()
-                setRecipes(recipieData)
+                const recipeData = await fetchRecipes(token)
+                setRecipes(recipeData)
             } catch (error) {
                 console.error(error)
             }
         }
         loadRecipes()
-    }, []);
+    }, [token]);
 
     return (<div className="container-center">
         <h2 className="heading-matmatikk">Tilgjenglige oppskrifter</h2>

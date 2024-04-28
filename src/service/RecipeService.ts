@@ -2,14 +2,16 @@ import {Recipe} from "../model/Recipe";
 import {RecipeFormState} from "../component/AddRecipePage/AddRecipePage";
 import {RecipeRequest} from "../model/RecipeRequest";
 
-export const fetchRecipes = async (): Promise<Recipe[]> => {
+export const fetchRecipes = async (token?: string): Promise<Recipe[]> => {
+    if (!token) throw new Error("No access token found")
 
     const endpoint = "/recipe"
     const response = await fetch(endpoint,
         {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             }
 
         })
@@ -19,18 +21,19 @@ export const fetchRecipes = async (): Promise<Recipe[]> => {
     }
     return response.json()
 }
-export const createRecipe = async (recipeState: RecipeFormState): Promise<Recipe> => {
+export const createRecipe = async (recipeState: RecipeFormState, token?:string): Promise<Recipe> => {
+    if (!token) throw new Error("No access token found")
 
     const endpoint = "/recipe"
     const requestBody: RecipeRequest = recipeState
-    const userToken = '1234abcd1234abcd'
 
     const response = await fetch(endpoint,
         {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${userToken}`
+                'Authorization': `Bearer ${token}`
+
             },
             body: JSON.stringify(requestBody)
         }

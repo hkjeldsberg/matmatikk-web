@@ -3,6 +3,7 @@ import {useForm} from "react-hook-form";
 import {Recipe} from "../../model/Recipe";
 import {createRecipe} from "../../service/RecipeService";
 import './AddRecipePage.scss'
+import {useAuth} from "../AuthProvider/AuthProvider";
 
 export interface RecipeFormState {
     name: string,
@@ -10,6 +11,7 @@ export interface RecipeFormState {
 }
 
 export const AddRecipePage: React.FC = () => {
+    const {token} = useAuth()
     const [recipe, setRecipe] = useState<Recipe>()
     const [error, setError] = useState<string>();
     const {
@@ -21,7 +23,7 @@ export const AddRecipePage: React.FC = () => {
 
     const onSubmit = async (recipeState: RecipeFormState) => {
         try {
-            const recipe = await createRecipe(recipeState);
+            const recipe = await createRecipe(recipeState, token);
             reset();
             setRecipe(recipe)
             setError('');

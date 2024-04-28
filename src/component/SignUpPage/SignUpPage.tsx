@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {useForm} from "react-hook-form";
 import './SignUpPage.scss'
+import {User} from "../../model/User";
 
 interface RegisterFormState {
     firstName: string;
@@ -9,12 +10,33 @@ interface RegisterFormState {
     password: string;
 }
 
-async function registerUser(data: RegisterFormState) {
-    console.log(data)
+
+const registerUser = async (data: RegisterFormState) => {
+    const endpoint = "/users/register"
+    const response = await fetch(endpoint,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+    if (!response.ok) {
+        throw new Error(`Failed to sign up user: ${response.status} ${response.statusText}`)
+    }
+    return response.json()
+}
+
+interface UserResponse {
+    id: string,
+    firstName: string,
+    lastName: string,
+    email: string
 }
 
 export const SignUpPage = () => {
     const [error, setError] = useState<string>();
+    const [user, setUser] = useState<User>()
     const {
         register,
         handleSubmit,
@@ -24,11 +46,12 @@ export const SignUpPage = () => {
 
     const onLogin = async (data: RegisterFormState) => {
         try {
-            await registerUser(data);
+            const userData: UserResponse = await registerUser(data);
             reset();
+            setUser(userData)
             setError('');
         } catch (error) {
-            setError('Klarte ikke å logge inn');
+            setError('Klarte ikke å registrere deg');
             console.error(error);
         }
     };
@@ -36,6 +59,8 @@ export const SignUpPage = () => {
     return <div className="container-matmatikk">
         <div className="container-center">
             <h2 className="heading-matmatikk">Registrer deg</h2>
+            {error && <div>{error}</div>}
+            {user && <div>Bruker med epost ${user.email} ble registrert! Log in her: </div>}
             <form className="signup-form" onSubmit={handleSubmit(onLogin)}>
                 <div className="form-group">
                     <label htmlFor="firstName">Fornavn</label>

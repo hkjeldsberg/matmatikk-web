@@ -1,19 +1,39 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useForm} from "react-hook-form";
 import './LoginPage.scss'
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {useAuth} from "../AuthProvider/AuthProvider";
+import {fetchUser} from "../../service/UserService";
 
 interface LoginFormState {
     email: string;
     password: string;
 }
 
-async function login(data: LoginFormState) {
-    console.log(data)
+const loginUser = async (data: LoginFormState) => {
+    const endpoint = "/auth/login"
+    const response = await fetch(endpoint,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+    if (!response.ok) {
+        throw new Error(`Failed to login: ${response.status} ${response.statusText}`)
+    }
+    return response.json()
+}
+
+interface LoginResponse {
+    accessToken: string
 }
 
 export const LoginPage: React.FC = () => {
+    const {login, isLoggedIn} = useAuth()
     const [error, setError] = useState<string>();
+    const navigate = useNavigate()
     const {
         register,
         handleSubmit,
@@ -23,7 +43,9 @@ export const LoginPage: React.FC = () => {
 
     const onLogin = async (data: LoginFormState) => {
         try {
-            await login(data);
+            const loginData: LoginResponse = await loginUser(data);
+            const userData = await fetchUser(loginData.accessToken);
+            login(loginData.accessToken, userData);
             reset();
             setError('');
         } catch (error) {
@@ -32,10 +54,17 @@ export const LoginPage: React.FC = () => {
         }
     };
 
+    useEffect(() => {
+        if (isLoggedIn) {
+            navigate("/")
+        }
+    }, [isLoggedIn, navigate]);
+
     return (
         <div className="container-matmatikk">
             <div className="container-center">
                 <h2 className="heading-matmatikk">Logg inn</h2>
+                {error && <div>{error}</div>}
                 <form className="login-form" onSubmit={handleSubmit(onLogin)}>
                     <div className="form-group">
                         <label htmlFor="email"></label>
