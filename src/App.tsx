@@ -12,6 +12,7 @@ import {SignUpPage} from "./component/SignUpPage/SignUpPage";
 import {LoginPage} from "./component/LoginPage/LoginPage";
 import './App.scss'
 import {AuthProvider} from "./component/AuthProvider/AuthProvider";
+import {MessagePage} from "./component/MessagePage/MessagePage";
 
 const App: React.FC = () =>
     <Router>
@@ -21,6 +22,7 @@ const App: React.FC = () =>
                 <Route path="/" element={<HomePage/>}/>
                 <Route path="/add" element={<AddRecipePage/>}/>
                 <Route path="/signup" element={<SignUpPage/>}/>
+                <Route path="/chat" element={<MessagePage/>}/>
                 <Route path="/login" element={<LoginPage/>}/>
             </Routes>
             <Footer/>
