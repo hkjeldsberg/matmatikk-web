@@ -1,0 +1,98 @@
+@import '../../utilities/variables';
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  max-width: $chat-width;
+  width: $chat-width;
+
+  .message-list {
+    list-style: none;
+    overflow-y: auto;
+    margin: 0;
+    flex-grow: 1;
+    padding: 20px;
+
+    .message-item {
+      display: flex;
+      padding: 1rem;
+      margin: 10px 75px 0 0;
+      border-radius: 10px 10px 10px 0;
+      background-color: $primary-green;
+
+      &.own {
+        margin: 10px 0 0 75px;
+        border-radius: 10px 10px 0 10px;
+        justify-content: flex-end;
+        background-color: $secondary-green;
+        align-items: flex-end;
+      }
+
+
+      .message-bubble {
+
+        .message-content {
+          color: $primary-black;
+          word-wrap: break-word;
+
+          &.own {
+            color: $primary-white;
+          }
+
+
+        }
+      }
+    }
+  }
+
+  .message-header {
+    padding: 1.2rem;
+    font-size: large;
+    font-weight: bold;
+
+    .header-icon {
+    }
+  }
+
+  .message-divider {
+    border: 1px solid $secondary-grey;
+    border-radius: 5rem;
+    margin: 0 1rem;
+  }
+
+  .message-form {
+    background-color: $primary-green;
+    padding: 1.25rem;
+    display: flex;
+
+    .message-input {
+      padding: .75rem;
+      border-radius: 5rem;
+      border: 1px solid #ccc;
+      width: 100%
+    }
+
+    .send-button {
+      margin-left: .5rem;
+      padding: .95rem 1.05rem;
+      border-radius: 5rem;
+      background-color: $primary-white;
+      border: 2px solid $primary-white;
+
+      &:hover {
+        border: 2px solid $primary-grey;
+
+      }
+
+      .send-icon {
+        color: $primary-black
+      }
+    }
+
+  }
+
+}
+
+
