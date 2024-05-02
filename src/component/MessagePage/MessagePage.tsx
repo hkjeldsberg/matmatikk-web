@@ -21,6 +21,7 @@ export const MessagePage = () => {
         if (stompClientRef.current && stompClientRef.current.connected) {
             const messageBody = {content: messageData.message, sender: user?.firstName};
             stompClientRef.current.send("/app/sendMessage", {}, JSON.stringify(messageBody));
+            reset()
         } else {
             console.error('STOMP client is not connected.');
         }
