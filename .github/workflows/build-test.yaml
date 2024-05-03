@@ -1,0 +1,37 @@
+name: Build and test project
+
+on:
+  pull_request:
+    branches:
+      - main
+
+  schedule:
+    # The CI is executed every day at 8am
+    - cron: "0 8 * * *"
+
+jobs:
+  build-and-test-frontend:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [ 18.x ]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build project
+        run: npm run build
+
