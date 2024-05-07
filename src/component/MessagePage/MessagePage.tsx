@@ -75,7 +75,7 @@ export const MessagePage = () => {
                         <input
                             {...register("message", {required: true})}
                             type="text"
-                            placeholder="Type a message..."
+                            placeholder="Skriv en melding..."
                             className="message-input"
                         />
                         <button type="submit" className="send-button">

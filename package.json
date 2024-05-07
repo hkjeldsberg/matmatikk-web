@@ -2,6 +2,7 @@
   "name": "matmatikk-web",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "@fontsource/merriweather": "^5.0.12",
     "@fontsource/roboto": "^5.0.12",
