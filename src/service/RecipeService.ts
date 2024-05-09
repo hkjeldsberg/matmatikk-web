@@ -1,9 +1,6 @@
 import {Recipe} from "../model/Recipe";
 import {RecipeFormState} from "../component/AddRecipePage/AddRecipePage";
 import {RecipeRequest} from "../model/RecipeRequest";
-import {User} from "../model/User";
-import {Message} from "../model/Message";
-
 
 
 export const fetchRecipes = async (token?: string): Promise<Recipe[]> => {
@@ -25,7 +22,7 @@ export const fetchRecipes = async (token?: string): Promise<Recipe[]> => {
     }
     return response.json()
 }
-export const createRecipe = async (recipeState: RecipeFormState, token?:string): Promise<Recipe> => {
+export const createRecipe = async (recipeState: RecipeFormState, token?: string): Promise<Recipe> => {
     if (!token) throw new Error("No access token found")
 
     const endpoint = "/recipe"
